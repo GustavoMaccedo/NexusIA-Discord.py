@@ -18,15 +18,28 @@ pip install -r requirements.txt -r requirements-training.txt -r requirements-dev
 cp .env.example .env
 ```
 
-Depois abra o `.env` e preencha pelo menos `DISCORD_TOKEN` e `DATABASE_URL`. O `.env` nunca vai para o git, pode confiar.
+## Configurando o arquivo .env
+
+O `.env` é um arquivo de texto que guarda os segredos do projeto: tokens e senhas. Ele fica só na sua máquina. O `.gitignore` já vem configurado para o git ignorar esse arquivo, então ele nunca sobe para o GitHub. O que sobe é só o `.env.example`, que tem os mesmos campos vazios, como modelo.
+
+Abra o `.env` num editor de texto e preencha campo por campo:
+
+* `DISCORD_TOKEN`: o token do seu bot. Pegue em discord.com/developers/applications, clicando no seu aplicativo, aba Bot, botão Reset Token. Cole o valor depois do sinal de igual, sem aspas e sem espaços.
+* `DATABASE_URL`: onde os dados do treino ficam guardados. Para começar simples, deixe o valor padrão do exemplo, que usa SQLite local e não precisa de nada externo: `sqlite+aiosqlite:///./nexusia.db`. Quando quiser Postgres (recomendo o Neon, plano gratuito), crie o banco no painel deles e cole a string de conexão trocando o usuário, a senha e o host pelos seus.
+* `CHAT_CHANNEL_ID`: o ID numérico do canal onde o bot conversa sem comando. No Discord, ative o modo desenvolvedor (Configurações, Avançado), clique com o botão direito no canal e escolha Copiar ID do Canal.
+* `TRAINER_BOT_IDS`: só preencha se você tiver um segundo bot treinador. Deixe vazio para uso normal.
+* `DISCORD_TRAINING_INGESTION_ENABLED`: vem `false` de fábrica, que significa que nada do que é dito no servidor vira dado de treino. Só mude para `true` se você for o dono do servidor, avisar as pessoas e tiver base para isso.
+* O resto (`MODEL_DIRECTORY`, `MAX_GENERATION_TOKENS` e os demais) já vem com valores sensatos. Só mexa se souber o que cada um faz.
+
+Regras de segurança que valem sempre: nunca cole token em chat, issue ou print de tela. Se um token vazar, gere outro na hora no portal do Discord. Nunca edite o `.env.example` colocando valores reais, ele é público.
 
 ## Configurando o bot no Discord
 
 1. Crie um aplicativo em discord.com/developers/applications e marque como bot
 2. Na aba Bot, ligue a intent privilegiada **Message Content Intent**
-3. Copie o token para `DISCORD_TOKEN` no `.env`
+3. Copie o token para `DISCORD_TOKEN` no `.env`, como explicado acima
 4. Convide o bot para o seu servidor com permissão de ler e enviar mensagens
-5. No `.env`, coloque o ID do canal de conversa em `CHAT_CHANNEL_ID`
+5. Confira se o `CHAT_CHANNEL_ID` no `.env` é o canal certo
 
 ## Ligando
 
