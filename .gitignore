@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# Segredos (nunca commitar)
+.env
+*.db
+*.sqlite*
+
+# Não sobe: treinadora local com chaves de API
+iatreino/
+
+# Não sobe: pesos, corpus, brutos e logs (gerados em runtime)
+checkpoints/
+*.pt
+*.safetensors
+*.bin
+tokenizer/
+datasets/
+data/
+logs/
+*.log
+
+# Sobe somente o README raiz como doc
+*.md
+!README.md
+
+# OS
+.DS_Store

@@ -1,0 +1,18 @@
+[project]
+name = "nexusia"
+version = "0.1.0"
+description = "Nexusia — IA conversacional própria (Transformer autoral PyTorch + discord.py), pesos aleatórios + treinamento autorizado"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+# EXE001: scripts rodam via `python scripts/...`; o fs (sdcard) não preserva bit executável.
+ignore = ["EXE001"]
